@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      // ***5 - Um grupo de amigos será colocado lado a lado para tirar uma foto. De quantos modos distintos os amigos podem se organizar para tirar a foto? Desenvolva uma função que receba um número de pessoas (valor inteiro) e retorne quantas possibilidades de organização existem para que o fotografo saiba o número de modos distintos que esse grupo e outros grupos possam se organizar.***
+      function people(num) {
+        let array = [num];
+        while (array.length !== num) {
+          num = num - 1;
+          array.push(num);
+          if (num == 1) {
+            break;
+          }
+        }
+        let n;
+        for (let index = 0; index < array.length; index++) {
+          const element = array[index];
+          if (index === 0) {
+            n = element;
+          } else {
+            n = n * element;
+          }
+        }
+        return n;
+      }
+
+      // Resultados esperados
+      console.log(people(12), 479001600);
+      console.log(people(6), 720);
+      console.log(people(2), 2);
+      console.log(people(4), 24);
+    </script>
+  </body>
+</html>

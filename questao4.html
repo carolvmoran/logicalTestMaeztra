@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      //     ***4 - Considere um conjunto de pessoas aposentadas, onde cada pessoa começou a trabalhar em ano X e aposentou em ano Y. Crie uma função que receba uma matriz na seguinte estrutura*** `[[x1,y1],[x2,y2],...[xn,yn]]` ***e calcule em qual/quais ano/anos houve mais pessoas trabalhando.***
+
+      // *Considere:*
+      // - Os valores de X como o ano que os indívíduos começaram a trabalhar (x>0, x<y );
+      // - Os valores de Y como o ano que os indívíduos se aposentaram (y>0);
+      // - O ano de início deve ser considerado como ano trabalhado;
+      // - O ano de aposentadoria deve ser considerado como ano trabalhado.
+
+      function years(matriz) {
+        let contaAnos = {};
+        matriz.forEach((pessoa) => {
+          for (let ano = pessoa[0]; ano <= pessoa[1]; ano++) {
+            contaAnos[ano] = (contaAnos[ano] || 0) + 1;
+          }
+        });
+        let maisTrabalhados = [];
+        let max = 0;
+
+        for (let ano in contaAnos) {
+          if (contaAnos[ano] > max) {
+            maisTrabalhados = [ano];
+            max = contaAnos[ano];
+          } else if (contaAnos[ano] === max) {
+            maisTrabalhados.push(ano);
+          }
+        }
+
+        return `"Os anos com mais pessoas trabalhando são:" ${maisTrabalhados.map(
+          Number
+        )} "e o intervalo entre eles é de" ${maisTrabalhados[0]} "até" ${
+          maisTrabalhados[maisTrabalhados.length - 1]
+        }`;
+      }
+
+      console.log(
+        years([
+          [1960, 2005],
+          [1945, 2008],
+          [1938, 1999],
+        ])
+      );
+      console.log(
+        years([
+          [1986, 2023],
+          [1991, 2050],
+          [1960, 2000],
+        ])
+      );
+    </script>
+  </body>
+</html>

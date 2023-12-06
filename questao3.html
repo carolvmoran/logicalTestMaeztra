@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      // ***3 - Crie uma função que recebe uma string com qualquer sequência dos seguintes caracteres*** `'[', '{', '(', ')', '}', ']'` ***e retorne se a sequência é uma sequência válida ou não. Uma sequência é válida se as chaves, parênteses e colchetes abrem e fecham corretamente***
+
+      function valid(string) {
+        let mudou = true;
+        let str = string.replace(/\(\)|\[\]|\{\}/g, "");
+        while (str !== "") {
+          let strOriginal = str;
+          str = str.replace(/\(\)|\[\]|\{\}/g, "");
+          mudou = str !== strOriginal;
+          if (mudou == false) {
+            break;
+          }
+        }
+        if (str === "") {
+          return "é uma sequência válida";
+        } else {
+          return "não é uma sequência válida";
+        }
+      }
+
+      // Resultados esperados
+      console.log(valid("{[()(){}[]]{}}"), "----> é uma sequência válida");
+      console.log(
+        valid("{[(()]}"),
+        "----> não é uma sequência válida (Há um parêntese posicionado incorretamente)"
+      );
+      console.log(valid("{}[]()"), "----> é uma sequência válida");
+      console.log(
+        valid("((){}[[])"),
+        "----> não é uma sequência válida (Há uma chave posicionado incorretamente)"
+      );
+      console.log(
+        valid("[{}([)]]"),
+        "----> não é uma sequência válida (O número de caracteres está correto, mas o posicionamento de uma chave/parêntese está incorreto)"
+      );
+    </script>
+  </body>
+</html>
